@@ -1,4 +1,4 @@
-package br.com.rag.apilivebus.api.point;
+package br.com.rag.apilivebus.api.user;
 
 import br.com.rag.apilivebus.utils.CtrlUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(PointCtrl.PATH)
-public class PointCtrl {
+@RequestMapping(UserCtrl.PATH)
+public class UserCtrl {
 
-    static final String PATH = "/api/point";
-    private PointService pointService;
+    static final String PATH = "/api/user";
+    private UserService userService;
 
     @Autowired
-    public PointCtrl(PointServiceImpl service) {
-        this.pointService = service;
+    public UserCtrl(UserServiceImpl service) {
+        this.userService = service;
     }
 
 }
