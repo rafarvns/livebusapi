@@ -39,7 +39,7 @@ public abstract class AbstractService<T extends AbstractEntity> implements IBase
 	}
 	
 	@Override
-	public void removeByIDO(Long id) {
+	public void removeByID(Long id) {
 		repository.deleteById(id);
 	}
 

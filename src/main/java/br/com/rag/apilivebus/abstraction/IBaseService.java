@@ -19,5 +19,5 @@ public interface IBaseService<T> {
 	
 	void remove(T entity);
 	
-	void removeByIDO(Long id);
+	void removeByID(Long id);
 }
