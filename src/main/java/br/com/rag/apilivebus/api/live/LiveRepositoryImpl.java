@@ -40,13 +40,13 @@ public class LiveRepositoryImpl extends QueryDslSupport implements LiveRepositor
 
         for(User u : lstUsersBoarding){
             EntityManager em = getEntityManager();
-            String str = "select (6371 * acos(cos(radians("+u.getLatitude()+")) * cos(radians(latitude)) * cos(radians("+u.getLongitude()+") - radians(longitude)) + sin(radians("+u.getLatitude()+")) * sin(radians(latitude)))) as distance from user having distance <= 10";
+            String str = "select *, (6371 * acos(cos(radians("+u.getLatitude()+")) * cos(radians(latitude)) * cos(radians("+u.getLongitude()+") - radians(longitude)) + sin(radians("+u.getLatitude()+")) * sin(radians(latitude)))) as distance from user having distance <= 1";
             Query query = em.createQuery(
                     str
             );
             return null;
         }
-return null;
+        return null;
     }
 
     @Transactional
