@@ -6,4 +6,5 @@ public interface LiveRepositoryCustom {
 
     List<Live> findLiveBus();
 
+    void mocka();
 }

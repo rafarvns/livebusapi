@@ -19,6 +19,7 @@ public class LiveServiceImpl extends AbstractService<Live> implements LiveServic
 
     @Override
     public List<Live> getLiveBus() {
+        //liveRepository.mocka();
         return liveRepository.findLiveBus();
     }
 }
