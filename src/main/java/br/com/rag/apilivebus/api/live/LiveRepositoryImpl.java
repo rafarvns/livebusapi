@@ -22,13 +22,13 @@ public class LiveRepositoryImpl extends QueryDslSupport implements LiveRepositor
     private EntityManager em;
 
     public LiveRepositoryImpl() {
-        super(Live.class);
+        super(User.class);
     }
 
     @Override
-    public List<Live> findLiveBus() {
+    public List<User> findLiveBus() {
 
-        List<Live> lstLive = new ArrayList<>();
+        List<User> lstLive = new ArrayList<>();
         QUser user = QUser.user;
 
         List<User> lstUsersBoarding = getQuerydsl().createQuery()
@@ -37,17 +37,28 @@ public class LiveRepositoryImpl extends QueryDslSupport implements LiveRepositor
                 .where(user.isConnected.eq(true)
                         .and(user.isTraveling.eq(true)))
                 .fetch();
-
+        List<User> jumpUsers = new ArrayList<>();
+        int numberOfJump = 0;
         for(User u : lstUsersBoarding){
+            boolean isRepeat = false;
+            for(int i = 0; i < numberOfJump; i++){
+                if(u.getId().equals(17L)){
+                    isRepeat = true;
+                    break;
+                }
+            }
+            if(isRepeat && numberOfJump != 0) continue;
             EntityManager em = getEntityManager();
             String str = "select *, (6371 * acos(cos(radians("+u.getLatitude()+")) * cos(radians(latitude)) * " +
                     "cos(radians("+u.getLongitude()+") - radians(longitude)) + sin(radians("+u.getLatitude()+")) * " +
                     "sin(radians(latitude)))) as distance from user having distance <= 10 and distance > 0";
-            Query query = em.createNativeQuery(
-                    str
-            );
-            List<User> userss = query.getResultList();
-            lstLive.add(new Live("a"));
+            TypedQuery<User> query = (TypedQuery<User>) em.createNativeQuery(str);
+            List<User> nearbyUsers = query.getResultList();
+            if(nearbyUsers.isEmpty()) continue;
+            jumpUsers.addAll(nearbyUsers);
+            numberOfJump += nearbyUsers.size();
+            if(numberOfJump > 1)
+                lstLive.add(nearbyUsers.get(0));
         }
         return lstLive;
     }
@@ -63,10 +74,10 @@ public class LiveRepositoryImpl extends QueryDslSupport implements LiveRepositor
         l1.setId(1L);
         Line l2 = new Line();
         l2.setId(1L);
-        e.persist(new User(true, new Date(), "asdf1", new BigDecimal(-10.5), new BigDecimal(-10), true, p1, p2, l1, l2));
-        e.persist(new User(true, new Date(), "asdf2", new BigDecimal(-10.54), new BigDecimal(-10), true, p1, p2, l1, l2));
-        e.persist(new User(true, new Date(), "asdf3", new BigDecimal(-10.53), new BigDecimal(-10), true, p1, p2, l1, l2));
-        e.persist(new User(true, new Date(), "asdf4", new BigDecimal(-20.5), new BigDecimal(-10), true, p1, p2, l1, l2));
-        e.persist(new User(true, new Date(), "asdf5", new BigDecimal(-30.5), new BigDecimal(-10), true, p1, p2, l1, l2));
+//        e.persist(new User(true, new Date(), "asdf1", new BigDecimal(-10.5), new BigDecimal(-10), true, p1, p2, l1, l2));
+//        e.persist(new User(true, new Date(), "asdf2", new BigDecimal(-10.54), new BigDecimal(-10), true, p1, p2, l1, l2));
+//        e.persist(new User(true, new Date(), "asdf3", new BigDecimal(-10.53), new BigDecimal(-10), true, p1, p2, l1, l2));
+//        e.persist(new User(true, new Date(), "asdf4", new BigDecimal(-20.5), new BigDecimal(-10), true, p1, p2, l1, l2));
+//        e.persist(new User(true, new Date(), "asdf5", new BigDecimal(-30.5), new BigDecimal(-10), true, p1, p2, l1, l2));
     }
 }

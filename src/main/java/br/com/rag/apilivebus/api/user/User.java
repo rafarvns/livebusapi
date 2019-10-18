@@ -64,4 +64,5 @@ public class User extends AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "CONFIRMED_LINE", referencedColumnName = "ID")
     private Line confirmedLine;
+
 }
