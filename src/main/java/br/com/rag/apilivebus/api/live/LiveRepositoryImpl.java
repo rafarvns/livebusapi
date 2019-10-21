@@ -39,7 +39,9 @@ public class LiveRepositoryImpl extends QueryDslSupport implements LiveRepositor
         List<User> jumpUsers = new ArrayList<>();
         int numberOfJump = 0;
         int indexUser = 0;
+
         for(User u : lstUsersBoarding){
+
             boolean isRepeat = false;
             for(int i = indexUser; i < numberOfJump; i++){
                 if(u.getId().equals(jumpUsers.get(i).getId())){
@@ -47,19 +49,24 @@ public class LiveRepositoryImpl extends QueryDslSupport implements LiveRepositor
                     break;
                 }
             }
+
             if(isRepeat && numberOfJump != 0) continue;
+
             EntityManager em = getEntityManager();
             String str = "select *, (6371 * acos(cos(radians("+u.getLatitude()+")) * cos(radians(latitude)) * " +
                     "cos(radians("+u.getLongitude()+") - radians(longitude)) + sin(radians("+u.getLatitude()+")) * " +
                     "sin(radians(latitude)))) as distance from user having distance <= 5 and distance > 0";
             TypedQuery<User> query = (TypedQuery<User>) em.createNativeQuery(str, User.class);
+
             List<User> nearbyUsers = query.getResultList();
+
             if(nearbyUsers.isEmpty()) continue;
+
             jumpUsers.addAll(nearbyUsers);
             indexUser += numberOfJump;
             numberOfJump += nearbyUsers.size();
-            if(numberOfJump > 1)
-                lstLive.add(nearbyUsers.get(0));
+            if(numberOfJump > 1) lstLive.add(nearbyUsers.get(0));
+
         }
         return lstLive;
     }
