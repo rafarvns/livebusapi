@@ -55,7 +55,7 @@ public class LiveRepositoryImpl extends QueryDslSupport implements LiveRepositor
             EntityManager em = getEntityManager();
             String str = "select *, (6371 * acos(cos(radians("+u.getLatitude()+")) * cos(radians(latitude)) * " +
                     "cos(radians("+u.getLongitude()+") - radians(longitude)) + sin(radians("+u.getLatitude()+")) * " +
-                    "sin(radians(latitude)))) as distance from user having distance <= 5 and distance > 0";
+                    "sin(radians(latitude)))) as distance from user having distance <= 15/1000 and distance > 0";
             TypedQuery<User> query = (TypedQuery<User>) em.createNativeQuery(str, User.class);
 
             List<User> nearbyUsers = query.getResultList();
@@ -65,7 +65,7 @@ public class LiveRepositoryImpl extends QueryDslSupport implements LiveRepositor
             jumpUsers.addAll(nearbyUsers);
             indexUser += numberOfJump;
             numberOfJump += nearbyUsers.size();
-            if(numberOfJump > 1) lstLive.add(nearbyUsers.get(0));
+            if(numberOfJump > 5) lstLive.add(nearbyUsers.get(0));
 
         }
         return lstLive;
