@@ -1,6 +1,6 @@
 --liquibase formatted sql
 
---changeset springangular:1
+--changeset apilivebus:1
 
 CREATE TABLE auth (
     id INT (11) NOT NULL AUTO_INCREMENT,
