@@ -1,0 +1,1 @@
+heroku deploy:jar target/api-livebus.jar --app livebusapi

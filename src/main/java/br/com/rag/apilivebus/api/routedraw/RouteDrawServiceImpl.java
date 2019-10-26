@@ -4,6 +4,8 @@ import br.com.rag.apilivebus.abstraction.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RouteDrawServiceImpl extends AbstractService<RouteDraw> implements RouteDrawService {
 
@@ -14,4 +16,8 @@ public class RouteDrawServiceImpl extends AbstractService<RouteDraw> implements 
         this.routeDrawRepository = repository;
     }
 
+    @Override
+    public List<RouteDraw> getAll() {
+        return routeDrawRepository.findAll();
+    }
 }
