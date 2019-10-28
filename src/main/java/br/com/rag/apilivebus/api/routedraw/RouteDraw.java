@@ -8,7 +8,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 
 @Entity
@@ -27,12 +28,14 @@ public class RouteDraw extends AbstractEntity {
     @NotNull(message = "Longitude é obrigatória!")
     private BigDecimal longitude;
 
-    @Column
+    @Column(name = "index_pos")
     @NotNull(message = "Indexação é obrigatória!")
-    private Integer index;
+    @Positive(message = "Indexação precisa ser positiva!")
+    private Long indexPos;
 
     @ManyToOne
-    @JoinColumn(name = "LINE", referencedColumnName = "ID")
+    @JoinColumn(name = "ID_LINE", referencedColumnName = "ID")
+    @NotNull(message = "Linha é obrigatório!")
     private Line line;
 
 }
