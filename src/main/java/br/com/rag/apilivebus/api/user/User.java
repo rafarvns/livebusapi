@@ -38,11 +38,11 @@ public class User extends AbstractEntity {
     @Size(max=20, message = "Nome não pode possuir mais de 20 caracteres!")
     private String name;
 
-    @Column
+    @Column(precision = 19, scale = 6)
     @NotNull(message = "Latitude é obrigatória!")
     private BigDecimal latitude;
 
-    @Column
+    @Column(precision = 19, scale = 6)
     @NotNull(message = "Longitude é obrigatória!")
     private BigDecimal longitude;
 

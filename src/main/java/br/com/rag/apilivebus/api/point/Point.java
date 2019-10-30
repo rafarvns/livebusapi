@@ -27,11 +27,11 @@ public class Point extends AbstractEntity {
     @Size(max=5, message = "MarkerId não pode possuir mais de 5 caracteres!")
     private String markerId;
 
-    @Column
+    @Column(precision = 19, scale = 6)
     @NotNull(message = "Latitude é obrigatória!")
     private BigDecimal latitude;
 
-    @Column
+    @Column(precision = 19, scale = 6)
     @NotNull(message = "Longitude é obrigatória!")
     private BigDecimal longitude;
 

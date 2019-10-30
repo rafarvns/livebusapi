@@ -20,11 +20,11 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class RouteDraw extends AbstractEntity {
 
-    @Column
+    @Column(precision = 19, scale = 6)
     @NotNull(message = "Latitude é obrigatória!")
     private BigDecimal latitude;
 
-    @Column
+    @Column(precision = 19, scale = 6)
     @NotNull(message = "Longitude é obrigatória!")
     private BigDecimal longitude;
 
