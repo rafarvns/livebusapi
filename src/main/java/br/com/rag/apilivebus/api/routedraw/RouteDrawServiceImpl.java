@@ -20,4 +20,9 @@ public class RouteDrawServiceImpl extends AbstractService<RouteDraw> implements 
     public List<RouteDraw> getAll() {
         return routeDrawRepository.findAll();
     }
+
+    @Override
+    public List<RouteDraw> getAllRouteDrawByLine(Long number) {
+        return routeDrawRepository.findAllRouteDrawByLine(number);
+    }
 }

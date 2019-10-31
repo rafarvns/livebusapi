@@ -8,4 +8,6 @@ public interface RouteDrawService extends IBaseService<RouteDraw> {
 
     List<RouteDraw> getAll();
 
+    List<RouteDraw> getAllRouteDrawByLine(Long number);
+
 }

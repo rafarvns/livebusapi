@@ -8,5 +8,4 @@ public interface LiveRepositoryCustom {
 
     List<User> findLiveBus();
 
-    void mocka();
 }

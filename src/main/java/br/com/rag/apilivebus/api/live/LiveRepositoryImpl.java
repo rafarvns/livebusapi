@@ -71,21 +71,4 @@ public class LiveRepositoryImpl extends QueryDslSupport implements LiveRepositor
         return lstLive;
     }
 
-    @Transactional
-    public void mocka() {
-        EntityManager e = getEntityManager();
-        Point p1 = new Point();
-        p1.setId(1L);
-        Point p2 = new Point();
-        p2.setId(1L);
-        Line l1 = new Line();
-        l1.setId(1L);
-        Line l2 = new Line();
-        l2.setId(1L);
-//        e.persist(new User(true, new Date(), "asdf1", new BigDecimal(-10.5), new BigDecimal(-10), true, p1, p2, l1, l2));
-//        e.persist(new User(true, new Date(), "asdf2", new BigDecimal(-10.54), new BigDecimal(-10), true, p1, p2, l1, l2));
-//        e.persist(new User(true, new Date(), "asdf3", new BigDecimal(-10.53), new BigDecimal(-10), true, p1, p2, l1, l2));
-//        e.persist(new User(true, new Date(), "asdf4", new BigDecimal(-20.5), new BigDecimal(-10), true, p1, p2, l1, l2));
-//        e.persist(new User(true, new Date(), "asdf5", new BigDecimal(-30.5), new BigDecimal(-10), true, p1, p2, l1, l2));
-    }
 }

@@ -54,18 +54,6 @@ public class Point extends AbstractEntity {
     @NotNull
     private PointType pointType;
 
-    @Column
-    @NotNull(message = "Caminho do ícone é obrigatório!")
-    @NotEmpty(message = "Caminho do ícone é obrigatório!")
-    @NotBlank(message = "Caminho do ícone é obrigatório!")
-    @Size(max=100, message = "Caminho do ícone não pode possuir mais de 100 caracteres!")
-    private String iconPath;
-
-    @Column
-    @NotNull(message = "Tamanho do ícone é obrigatório!")
-    @Positive(message = "Tamanho do ícone precisa ser positivo!")
-    private Long iconSize;
-
     @ManyToMany(mappedBy="points", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<Line> lines;
 }
