@@ -1,6 +1,10 @@
 package br.com.rag.apilivebus.api.point;
 
 import br.com.rag.apilivebus.abstraction.QueryDslSupport;
+import br.com.rag.apilivebus.api.line.QLine;
+import br.com.rag.apilivebus.api.point.dto.PointsWithoutLinesDTO;
+
+import java.util.List;
 
 public class PointRepositoryImpl extends QueryDslSupport implements PointRepositoryCustom {
 
@@ -8,4 +12,16 @@ public class PointRepositoryImpl extends QueryDslSupport implements PointReposit
         super(Point.class);
     }
 
+    @Override
+    public List<PointsWithoutLinesDTO> findByLine(Long number) {
+        QPoint point = QPoint.point;
+        QLine line = QLine.line;
+
+        return getQuerydsl().createQuery()
+                .select(PointsWithoutLinesDTO.constructor(point))
+                .from(point)
+                .innerJoin(point.lines, line)
+                .on(line.number.eq(number))
+                .fetch();
+    }
 }

@@ -31,7 +31,7 @@ public class Line extends AbstractEntity {
     @Size(max=60, message = "Nome não pode possuir mais de 60 caracteres!")
     private String name;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name="lines_points",
                 joinColumns={@JoinColumn(name="line_id")},
                 inverseJoinColumns={@JoinColumn(name="point_id")})
