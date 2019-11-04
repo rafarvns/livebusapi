@@ -15,4 +15,12 @@ public abstract class AbstractEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	public AbstractEntity(Long id){
+	    this.id = id;
+    }
+
+    public AbstractEntity(){
+
+    }
+
 }

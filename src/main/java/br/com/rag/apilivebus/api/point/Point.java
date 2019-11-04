@@ -2,6 +2,9 @@ package br.com.rag.apilivebus.api.point;
 
 import br.com.rag.apilivebus.abstraction.AbstractEntity;
 import br.com.rag.apilivebus.api.line.Line;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -10,7 +13,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "POINT")
@@ -18,6 +23,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "lines"})
 public class Point extends AbstractEntity {
 
     @Column(unique = true)
@@ -54,6 +60,7 @@ public class Point extends AbstractEntity {
     @NotNull
     private PointType pointType;
 
-    @ManyToMany(mappedBy="points", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private List<Line> lines;
+    @ManyToMany(mappedBy="points")
+    private Set<Line> lines;
+
 }

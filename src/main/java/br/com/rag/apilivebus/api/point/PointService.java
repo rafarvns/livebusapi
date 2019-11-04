@@ -9,6 +9,6 @@ public interface PointService extends IBaseService<Point> {
 
     List<Point> getAll();
 
-    List<PointsWithoutLinesDTO> getByLine(Long number);
+    List<Point> getByLine(Long number);
 
 }

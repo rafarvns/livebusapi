@@ -13,13 +13,13 @@ public class PointRepositoryImpl extends QueryDslSupport implements PointReposit
     }
 
     @Override
-    public List<PointsWithoutLinesDTO> findByLine(Long number) {
+    public List<Point> findByLine(Long number) {
         QPoint point = QPoint.point;
         QLine line = QLine.line;
 
         return getQuerydsl().createQuery()
-                .select(PointsWithoutLinesDTO.constructor(point))
-                .from(point)
+                .select(point)
+                .from(point, line)
                 .innerJoin(point.lines, line)
                 .on(line.number.eq(number))
                 .fetch();

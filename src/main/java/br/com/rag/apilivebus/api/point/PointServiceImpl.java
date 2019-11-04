@@ -23,7 +23,7 @@ public class PointServiceImpl extends AbstractService<Point> implements PointSer
     }
 
     @Override
-    public List<PointsWithoutLinesDTO> getByLine(Long number) {
+    public List<Point> getByLine(Long number) {
         return pointRepository.findByLine(number);
     }
 }

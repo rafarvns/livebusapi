@@ -21,7 +21,7 @@ public class LineCtrl {
 
     @GetMapping
     public ResponseEntity getName(){
-        return CtrlUtils.sendOk("teste");
+        return CtrlUtils.sendOk(lineService.getAll());
     }
 
 }

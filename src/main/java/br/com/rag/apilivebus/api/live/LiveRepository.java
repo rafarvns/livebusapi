@@ -4,5 +4,5 @@ import br.com.rag.apilivebus.abstraction.IBaseRepository;
 import br.com.rag.apilivebus.api.live.Live;
 import br.com.rag.apilivebus.api.user.User;
 
-public interface LiveRepository extends IBaseRepository<User>, LiveRepositoryCustom {
+public interface LiveRepository extends IBaseRepository<Live>, LiveRepositoryCustom {
 }

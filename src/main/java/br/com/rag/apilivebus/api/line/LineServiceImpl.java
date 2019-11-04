@@ -4,6 +4,8 @@ import br.com.rag.apilivebus.abstraction.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LineServiceImpl extends AbstractService<Line> implements LineService {
 
@@ -14,4 +16,8 @@ public class LineServiceImpl extends AbstractService<Line> implements LineServic
         this.lineRepository = repository;
     }
 
+    @Override
+    public List<Line> getAll() {
+        return lineRepository.findAll();
+    }
 }

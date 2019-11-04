@@ -6,6 +6,7 @@ import br.com.rag.apilivebus.utils.CtrlUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,9 +22,9 @@ public class LiveCtrl {
         this.liveService = service;
     }
 
-    @GetMapping("getLiveBus")
-    public ResponseEntity getLiveBus(){
-        return CtrlUtils.sendOk(liveService.getLiveBus());
+    @GetMapping("getLiveBusByLine/{number}")
+    public ResponseEntity getLiveBusByLine(@PathVariable Long number){
+        return CtrlUtils.sendOk(liveService.getLiveBusByLine(number));
     }
 
 }
