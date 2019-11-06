@@ -43,4 +43,10 @@ public class Line extends AbstractEntity {
                 inverseJoinColumns={@JoinColumn(name="point_id")})
     private Set<Point> points;
 
+    public Line(Long id, Long number, String name, Set<Point> points) {
+        super(id);
+        this.number = number;
+        this.name = name;
+        this.points = points;
+    }
 }
