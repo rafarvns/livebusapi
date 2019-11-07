@@ -65,4 +65,19 @@ public class User extends AbstractEntity {
     @JoinColumn(name = "CONFIRMED_LINE", referencedColumnName = "ID")
     private Line confirmedLine;
 
+    public User(Long id, Boolean isConnected, Date lastConnect, String name,
+                BigDecimal latitude, BigDecimal longitude, Boolean isTraveling,
+                Point waitingLine, Point enteredLine, Line possibleLine, Line confirmedLine) {
+        super(id);
+        this.isConnected = isConnected;
+        this.lastConnect = lastConnect;
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.isTraveling = isTraveling;
+        this.waitingLine = waitingLine;
+        this.enteredLine = enteredLine;
+        this.possibleLine = possibleLine;
+        this.confirmedLine = confirmedLine;
+    }
 }

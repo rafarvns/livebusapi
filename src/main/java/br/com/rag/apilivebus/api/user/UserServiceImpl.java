@@ -22,10 +22,9 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
         this.userRepository = repository;
     }
 
-    @Transactional
     @Override
     public Long updateUserPosition(Long id, BigDecimal latitude, BigDecimal longitude) {
-        User user = userRepository.getOne(id);
+        User user = userRepository.findUserById(id);
         if (user != null) {
             user.setLatitude(latitude);
             user.setLongitude(longitude);
@@ -33,7 +32,7 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
             return id;
         }
         user = new User(true, new Date(), "newUser", latitude, longitude,
-                true, new Point(), new Point(), new Line(),
+                true, null, null, new Line(1L, null, null, null),
                 new Line(1L, null, null, null));
         return userRepository.saveAndFlush(user).getId();
     }

@@ -8,4 +8,13 @@ public class UserRepositoryImpl extends QueryDslSupport implements UserRepositor
         super(User.class);
     }
 
+    @Override
+    public User findUserById(Long id) {
+        QUser user = QUser.user;
+        return getQuerydsl().createQuery()
+                .select(user)
+                .from(user)
+                .where(user.id.eq(id))
+                .fetchOne();
+    }
 }
