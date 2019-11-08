@@ -26,6 +26,7 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     public Long updateUserPosition(Long id, BigDecimal latitude, BigDecimal longitude) {
         User user = userRepository.findUserById(id);
         if (user != null) {
+            user.setLastConnect(new Date());
             user.setLatitude(latitude);
             user.setLongitude(longitude);
             userRepository.save(user);

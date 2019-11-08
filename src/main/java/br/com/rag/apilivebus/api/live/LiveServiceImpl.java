@@ -35,11 +35,11 @@ public class LiveServiceImpl extends AbstractService<Live> implements LiveServic
     @Override
     public void autoFindLiveBuses() {
         List<Live> lstAllLiveBuses = liveRepository.findAllLiveBuses();
+        liveRepository.deleteAll();
         if(!lstAllLiveBuses.isEmpty()) updateLivePositions(lstAllLiveBuses);
     }
 
     private void updateLivePositions(List<Live> lstAllLiveBuses) {
-        liveRepository.deleteAll();
         liveRepository.saveAll(lstAllLiveBuses);
     }
 }

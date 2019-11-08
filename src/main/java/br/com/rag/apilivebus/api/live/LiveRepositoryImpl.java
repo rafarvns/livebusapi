@@ -50,7 +50,7 @@ public class LiveRepositoryImpl extends QueryDslSupport implements LiveRepositor
             if (isRepeat && numberOfJump != 0) continue;
 
             //busca uma lista de usuários próximos num raio de 10 metros a partir da posição do usuário que está sendo verificado
-            List<User> nearbyUsers = getNearbyUsers(u, BigDecimal.valueOf(10).divide(BigDecimal.valueOf(1000)));
+            List<User> nearbyUsers = getNearbyUsers(u, BigDecimal.valueOf(5).divide(BigDecimal.valueOf(1000)));
 
             //se vir uma lista vazia, pula para o próximo usuário
             if (nearbyUsers.isEmpty()) continue;
@@ -61,7 +61,7 @@ public class LiveRepositoryImpl extends QueryDslSupport implements LiveRepositor
             numberOfJump += nearbyUsers.size();
 
             //por fim, caso o grupo de usuário seja maio que 5, cria-se um novo possível ônibus
-            if (nearbyUsers.size() >= 5) lstLive.add(new Live(
+            if (nearbyUsers.size() >= 3) lstLive.add(new Live(
                     nearbyUsers.get(0).getLatitude(),
                     nearbyUsers.get(0).getLongitude(),
                     Long.valueOf(nearbyUsers.size()),
@@ -89,7 +89,7 @@ public class LiveRepositoryImpl extends QueryDslSupport implements LiveRepositor
         EntityManager em = getEntityManager();
         String str = "select *, (6371 * acos(cos(radians(" + user.getLatitude() + ")) * cos(radians(latitude)) * " +
                 "cos(radians(" + user.getLongitude() + ") - radians(longitude)) + sin(radians(" + user.getLatitude() + ")) * " +
-                "sin(radians(latitude)))) as distance from user having distance <= " + raio + " and distance > 0";
+                "sin(radians(latitude)))) as distance from user having distance <= " + raio;
         TypedQuery<User> query = (TypedQuery<User>) em.createNativeQuery(str, User.class);
         return query.getResultList();
     }
