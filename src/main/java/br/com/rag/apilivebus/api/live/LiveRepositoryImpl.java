@@ -50,7 +50,7 @@ public class LiveRepositoryImpl extends QueryDslSupport implements LiveRepositor
             if (isRepeat && numberOfJump != 0) continue;
 
             //busca uma lista de usuários próximos num raio de 10 metros a partir da posição do usuário que está sendo verificado
-            List<User> nearbyUsers = getNearbyUsers(u, BigDecimal.valueOf(5).divide(BigDecimal.valueOf(1000)));
+            List<User> nearbyUsers = getNearbyUsers(u, BigDecimal.valueOf(4).divide(BigDecimal.valueOf(1000)));
 
             //se vir uma lista vazia, pula para o próximo usuário
             if (nearbyUsers.isEmpty()) continue;
