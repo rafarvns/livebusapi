@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LineCtrl {
 
     static final String PATH = "/api/line";
+
     private LineService lineService;
 
     @Autowired
